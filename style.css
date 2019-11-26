@@ -23,8 +23,48 @@ body {
   font-size: 46px;
 }
 
+.menu {
+  width: 40%;
+  display: flex;
+  flex-flow: row nowrap;
+  list-style: none;
+  justify-content: space-between;
+}
+
 .memoryContainer {
-  height: 80vh;
-  width: 80vw;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  width: 80vh;
+  padding: 5vh 5vh;
   background: var(--bg-color-container);
 }
+
+
+.memoryPiece {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 80px;
+  margin: 0 5%;
+  background: var(--bg-color);
+  transform: rotateY(180deg);
+}
+
+.memoryPiece p {
+  opacity: 0;
+  color: var(--accent-color);
+}
+
+.hej1 {
+  
+  transform: rotateY(0deg);
+}
+
+.hej1 p{
+  opacity: 1;
+}
+
