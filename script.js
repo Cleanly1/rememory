@@ -1,6 +1,3 @@
-let memoryPieces = []
-
-
 const shuffle = function(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -21,19 +18,23 @@ const shuffle = function(array) {
 }
 
 const makeArray = function() {
+  let memoryPieces = []
   for (var i = 1; i < 9; i++) {
     memoryPieces.push({number: i, })
   }
-  shuffle(memoryPieces);
+  
+  original = memoryPieces; 
+  duplicate = original.slice();
+  fullMemoryPieces = original.concat(duplicate);
+  
+  return shuffle(fullMemoryPieces);
 }
 
-makeArray();
-
-console.log(memoryPieces);
+// console.log(memoryPieces);
 
 var index = 0;
-for (var i = 0; i < 2; i++) {
-memoryPieces.forEach(function(memoryPiece){
+  const memoryPieces = makeArray();
+  memoryPieces.forEach(function(memoryPiece){
   const divs = document.createElement("div");
   // const image = document.createElement("img");
   const title =  document.createElement("p");
@@ -47,7 +48,7 @@ memoryPieces.forEach(function(memoryPiece){
   document.body.getElementsByClassName('memoryPiece')[index].appendChild(title);
   index++;
 })
-}
+
 
 const numberOfMemoryPieces = window.document.getElementsByClassName('memoryPiece');
 
@@ -64,6 +65,9 @@ for (var i = 0; i < numberOfMemoryPieces.length; i++) {
     if (theEventTarget.className === 'memoryPiece') {
       // console.log(theEventTarget.getElementsByClassName('hej')[0].classList.add('hej1'))
       theEventTarget.classList.add('hej1');
+    }
+    if (theEventTarget.textContent === '1') {
+      console.log('hej')
     }
     // console.log(event)
   })

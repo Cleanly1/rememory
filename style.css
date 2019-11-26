@@ -52,11 +52,15 @@ body {
   margin: 0 5%;
   background: var(--bg-color);
   transform: rotateY(180deg);
+  transition-duration: 1s; 
 }
 
 .memoryPiece p {
   opacity: 0;
   color: var(--accent-color);
+  font-family: var(--font);
+  transition-delay: 0.5s;
+  transition-duration: 0.5s;
 }
 
 .hej1 {
