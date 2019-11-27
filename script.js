@@ -92,7 +92,7 @@ const play = function(){
               prevCardTargetInfo.classList.remove('hej1');
               prevCardTargetInfo = "";
               prevCard = "";
-            },1000)
+            }, 800)
           }
       } 
       console.log(prevCard)

@@ -24,10 +24,11 @@ body {
 }
 
 .menu {
-  width: 40%;
+  width: 100%;
   display: flex;
   flex-flow: row nowrap;
   list-style: none;
+  font-size: 100px;
   justify-content: space-between;
   align-items: center; 
   transition-duration: 1s;
@@ -35,7 +36,7 @@ body {
 
 .buttons {
   height: 100%;
-  width: 50px;
+  width: 100%;
   font-family: var(--font);
   color: var(--accent-color);
   background-color: var(--bg-color);
@@ -43,9 +44,14 @@ body {
   outline: none;
 }
 
+.buttons:disabled {
+  opacity: 0.5;
+}
+
 .menuAfterStart {
   justify-content: center;
   margin-bottom: 10px;
+  font-size: 24px;
 }
 
 .memoryContainer {
@@ -73,9 +79,11 @@ body {
   height: 80px;
   width: 80px;
   margin: 0 5%;
+  box-shadow: 2px 2px 5px black;
   background: var(--bg-color);
+  border: 2px solid var(--accent-color);
   transform: rotateY(180deg);
-  transition-duration: 1s; 
+  transition-duration: 0.8s; 
 }
 
 .memoryPiece p {
@@ -83,8 +91,8 @@ body {
   opacity: 0;
   color: var(--accent-color);
   font-family: var(--font);
-  transition-delay: 0.5s;
-  transition-duration: 0.5s;
+  transition-delay: 0.4s;
+  transition-duration: 0.4s;
 }
 
 .hej1 {
