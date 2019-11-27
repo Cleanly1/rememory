@@ -32,11 +32,15 @@ const makeArray = function() {
 
 
 const play = function(){
+  let prevCard = "";
+  let prevCardTargetInfo = "";
+  let score = [];
+  var index = 0;
   window.document.querySelector('.memoryContainer').classList.add('memoryContainerShow');
   window.document.querySelector('.menu').classList.add('menuAfterStart');
   window.document.getElementsByClassName('buttons')['start'].style.display = 'none';
   window.document.getElementsByClassName('buttons')['restart'].disabled = false;
-  var index = 0;
+  
     const memoryPieces = makeArray();
     memoryPieces.forEach(function(memoryPiece){
     const divs = document.createElement("div");
@@ -49,8 +53,7 @@ const play = function(){
     document.body.getElementsByClassName('memoryPiece')[index].appendChild(title);
     index++;
   })
-  let prevCard = "";
-  let prevCardTargetInfo = "";
+  
   const numberOfMemoryPieces = window.document.getElementsByClassName('memoryPiece');
 
   for (var i = 0; i < numberOfMemoryPieces.length; i++) {
@@ -77,6 +80,10 @@ const play = function(){
             console.log(prevCardTargetInfo)
             prevCard = "";
             prevCardTargetInfo = "";
+            score.push(1);
+            if (score.length === 8) {
+              window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
+            }
             
           }else if (prevCard !== currentCard) {
             console.log(currentCard) 
@@ -89,8 +96,7 @@ const play = function(){
           }
       } 
       console.log(prevCard)
-      
-      // console.log(event)
+       
     })
   }
 }
@@ -100,9 +106,11 @@ const replay = function(){
   while (myNode.firstChild) {
     myNode.removeChild(myNode.firstChild);
   }
+  myNode.classList.remove('memoryContainerShow');
+  window.document.querySelector('.gameCompleteMessage').classList.remove('gameCompleteMessageShow');
   setTimeout(function(){
     play();
-  }, 1000)
+  }, 2500)
 }
 
 

@@ -65,6 +65,7 @@ body {
 }
 
 .memoryPiece {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,6 +78,7 @@ body {
 }
 
 .memoryPiece p {
+  cursor: pointer;
   opacity: 0;
   color: var(--accent-color);
   font-family: var(--font);
@@ -91,5 +93,23 @@ body {
 
 .hej1 p{
   opacity: 1;
+}
+
+
+.gameCompleteMessage {
+  position: fixed;
+  background-color: var(--bg-color);
+  padding: 10px;
+  border: 2px solid var(--accent-color);
+  transform: translateY(1100%);
+  transition-duration: 2s; 
+}
+
+.gameCompleteMessageShow {
+  transform: translateX(0%);
+}
+
+.gameCompleteMessage h1 {
+  color: var(--accent-color);
 }
 
