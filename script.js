@@ -30,8 +30,11 @@ const makeArray = function() {
   return shuffle(fullMemoryPieces);
 }
 
-// console.log(memoryPieces);
-window.document.getElementsByClassName('buttons')['start'].addEventListener('click', function(){
+
+const play = function(){
+  window.document.querySelector('.memoryContainer').classList.add('memoryContainerShow');
+  window.document.querySelector('.menu').classList.add('menuAfterStart');
+  window.document.getElementsByClassName('buttons')['start'].style.display = 'none';
   var index = 0;
     const memoryPieces = makeArray();
     memoryPieces.forEach(function(memoryPiece){
@@ -65,7 +68,7 @@ window.document.getElementsByClassName('buttons')['start'].addEventListener('cli
       let prevCard = "";
       const currentCard = theEventTarget.dataset.number;
       if (prevCard === "") {
-        prevCard = currentCard
+        prevCard = currentCard;
       }
       if (prevCard !== "") {
         
@@ -76,6 +79,17 @@ window.document.getElementsByClassName('buttons')['start'].addEventListener('cli
       // console.log(event)
     })
   }
+}
+
+
+
+
+
+
+
+// console.log(memoryPieces);
+window.document.getElementsByClassName('buttons')['start'].addEventListener('click', function(){
+  play();
 })
 
 

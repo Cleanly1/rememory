@@ -29,15 +29,22 @@ body {
   flex-flow: row nowrap;
   list-style: none;
   justify-content: space-between;
+  align-items: center; 
+  transition-duration: 1s;
 }
 
 .buttons {
   height: 100%;
-  width: 100%;
+  width: 50px;
   font-family: var(--font);
   color: var(--accent-color);
   background-color: var(--bg-color);
   border: 0;
+}
+
+.menuAfterStart {
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
 .memoryContainer {
@@ -46,11 +53,16 @@ body {
   align-items: center;
   justify-content: center;
   height: 70vh;
-  width: 80vh;
-  padding: 5vh 5vh;
+  width: 0;
+  padding: 0;
   background: var(--bg-color-container);
+  transition-duration: 3s; 
 }
 
+.memoryContainerShow {
+  width: 80vh;
+  padding: 5vh 5vh;
+}
 
 .memoryPiece {
   display: flex;
