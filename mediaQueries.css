@@ -1,0 +1,16 @@
+@media (max-width:528px) {
+  .memoryPiece {
+    height: 52px;
+    width: 52px;
+    margin: 0 5%;
+  }
+  
+  .memoryContainer {
+    height: 60vh; 
+  }
+  
+  .memoryContainerShow {
+    width: 80vw;
+    padding: 2.5vw 2.5vw;
+  }
+}
