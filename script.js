@@ -32,10 +32,18 @@ const makeArray = function() {
 
 
 const play = function(){
+  // setTimeout(function(){
+  //   for (var i = 0; i < document.body.querySelectorAll('.memoryPiece').length; i++) {
+  //     document.body.querySelectorAll('.memoryPiece')[i].classList.add('memoryPieceShow');
+  //   }  
+  // },1000)
   let prevCard = "";
   let prevCardTargetInfo = "";
   let score = [];
   var index = 0;
+  let theScoreCounter = window.document.getElementById('score').textContent;
+  theScoreCounter = score.length;
+  window.document.getElementsByClassName('displayScore')[0].style.display = 'initial';
   window.document.querySelector('.memoryContainer').classList.add('memoryContainerShow');
   window.document.querySelector('.menu').classList.add('menuAfterStart');
   window.document.getElementsByClassName('buttons')['start'].style.display = 'none';
@@ -44,17 +52,17 @@ const play = function(){
     const memoryPieces = makeArray();
     memoryPieces.forEach(function(memoryPiece){
     const divs = document.createElement("div");
-    const title =  document.createElement("p");
-    title.innerHTML = memoryPiece.number;
+    const number =  document.createElement("p");
+    number.innerHTML = memoryPiece.number;
     divs.setAttribute('class', 'memoryPiece');
-    title.setAttribute('class', 'hej');
+    number.setAttribute('class', 'hej');
     divs.setAttribute('data-number', memoryPiece.number);
     document.body.getElementsByClassName('memoryContainer')[0].appendChild(divs);
-    document.body.getElementsByClassName('memoryPiece')[index].appendChild(title);
+    document.body.getElementsByClassName('memoryPiece')[index].appendChild(number);
     index++;
   })
   
-  const numberOfMemoryPieces = window.document.getElementsByClassName('memoryPiece');
+  const numberOfMemoryPieces = window.document.querySelectorAll('.memoryPiece');
 
   for (var i = 0; i < numberOfMemoryPieces.length; i++) {
     numberOfMemoryPieces[i].addEventListener('click', function(){
@@ -81,6 +89,7 @@ const play = function(){
             prevCard = "";
             prevCardTargetInfo = "";
             score.push(1);
+            window.document.getElementById('score').textContent = score.length;
             if (score.length === 8) {
               window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
             }
@@ -106,17 +115,14 @@ const replay = function(){
   while (myNode.firstChild) {
     myNode.removeChild(myNode.firstChild);
   }
-  myNode.classList.remove('memoryContainerShow');
+  myNode.classList.remove('memoryContainerShow')
   window.document.querySelector('.gameCompleteMessage').classList.remove('gameCompleteMessageShow');
   setTimeout(function(){
     play();
   }, 2500)
 }
 
-
-
-
-
+ 
 // console.log(memoryPieces);
 window.document.getElementsByClassName('buttons')['start'].addEventListener('click', function(){
   play();
@@ -125,11 +131,3 @@ window.document.getElementsByClassName('buttons')['start'].addEventListener('cli
 window.document.getElementsByClassName('buttons')['restart'].addEventListener('click', function(){
   replay();
 })
-
-
-
-
-
-
-
-
