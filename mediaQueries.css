@@ -1,5 +1,14 @@
 @media (max-width:528px) {
   
+  
+  .facebook {
+    width: 100px;
+  }
+  
+  .facebook img {
+    width: 100px;
+  }
+  
   .menu {
     width: 90%;
     display: flex;
