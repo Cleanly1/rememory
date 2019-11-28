@@ -17,6 +17,10 @@ const shuffle = function(array) {
   return array;
 }
 
+const getRndInteger = function(min, max) {
+  return Math.floor(Math.random() * (max - min) ) + min;
+}
+
 const makeArray = function() {
   let memoryPieces = []
   for (var i = 1; i < 9; i++) {
@@ -55,6 +59,7 @@ const play = function(){
     btns.setAttribute('class', 'memoryPiece');
     // number.setAttribute('class', 'hej');
     btns.setAttribute('data-number', memoryPiece.number);
+    btns.style.order = getRndInteger(0,16);
     document.body.getElementsByClassName('memoryContainer')[0].appendChild(btns);
     // document.body.getElementsByClassName('memoryPiece')[index].appendChild(number);
     index++;
@@ -80,8 +85,7 @@ const play = function(){
       }else if (prevCard !== "") {
         
           if (prevCard === currentCard && prevCardTargetInfo != theEventTarget) {
-            console.log(prevCardTargetInfo)
-            prevCard = "";
+            prevCard = ""; 
             prevCardTargetInfo = "";
             score.push(1);
             window.document.getElementById('score').textContent = score.length;
@@ -96,8 +100,7 @@ const play = function(){
             }
             
           }else if (prevCard !== currentCard) {
-            console.log(currentCard) 
-            setTimeout(function(){
+            setTimeout(function(){ 
               theEventTarget.classList.remove('memoryPieceText');
               prevCardTargetInfo.classList.remove('memoryPieceText');
               prevCardTargetInfo = "";
@@ -105,8 +108,7 @@ const play = function(){
             }, 800)
           }
       } 
-      console.log(prevCard)
-       
+        
     })
   }
 }
