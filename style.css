@@ -97,12 +97,7 @@ body {
   font-family: var(--font);
   transform: rotateY(180deg);
   transition-duration: 0.8s; 
-}
-
-.memoryPieceShow {
-  opacity: 1;
-  transition-duration: 2s;
-}
+} 
 
 .memoryPieceText {
   color: var(--accent-color);
@@ -112,11 +107,20 @@ body {
 
 .gameCompleteMessage {
   position: fixed;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
   background-color: var(--bg-color);
   padding: 10px;
   border: 2px solid var(--accent-color);
   transform: translateY(1100%);
   transition-duration: 2s; 
+}
+
+.gameCompleteMessage p {
+  color: var(--accent-color);
+  font-family: var(--font);
 }
 
 .gameCompleteMessageShow {
@@ -125,5 +129,6 @@ body {
 
 .gameCompleteMessage h1 {
   color: var(--accent-color);
+  font-family: var(--font);
 }
 

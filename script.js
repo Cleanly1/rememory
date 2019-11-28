@@ -34,13 +34,17 @@ const makeArray = function() {
   return shuffle(fullMemoryPieces);
 }
 
+// function getRandomColor() {
+//   var letters = '0123456789ABCDEF';
+//   var color = '#';
+//   for (var i = 0; i < 6; i++) {
+//     color += letters[Math.floor(Math.random() * 16)];
+//   }
+//   return color;
+// }
 
-const play = function(){
-  // setTimeout(function(){
-  //   for (var i = 0; i < document.body.querySelectorAll('.memoryPiece').length; i++) {
-  //     document.body.querySelectorAll('.memoryPiece')[i].classList.add('memoryPieceShow');
-  //   }  
-  // },1000)
+
+const play = function(){ 
   let prevCard = "";
   let prevCardTargetInfo = "";
   let score = [];
@@ -98,6 +102,13 @@ const play = function(){
             if (score.length === 8) {
               window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
             }
+            // if (score.length > 3) {
+            //   setInterval(function(){
+            //     document.documentElement.style.setProperty('--accent-color', getRandomColor());
+            //     document.documentElement.style.setProperty('--bg-color', getRandomColor());
+            //   },400)
+            // 
+            // }
             
           }else if (prevCard !== currentCard) {
             setTimeout(function(){ 
