@@ -86,7 +86,7 @@ const play = function(mode){
       index++;
   })
   if (mode == 16) {
-    window.document.getElementsByClassName('memoryContainerShow')[0].style.width = '80vw';
+    window.document.getElementsByClassName('memoryContainerShow')[0].style.width = '110vh';
     for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
       window.document.getElementsByClassName('memoryPiece')[i].style = 'margin:0 1%;'
       console.log()
