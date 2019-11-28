@@ -41,8 +41,7 @@ const play = function(){
   let prevCardTargetInfo = "";
   let score = [];
   var index = 0;
-  let theScoreCounter = window.document.getElementById('score').textContent;
-  theScoreCounter = score.length;
+  let theScoreCounter = window.document.getElementById('score').textContent; 
   window.document.getElementsByClassName('displayScore')[0].style.display = 'initial';
   window.document.querySelector('.memoryContainer').classList.add('memoryContainerShow');
   window.document.querySelector('.menu').classList.add('menuAfterStart');
@@ -51,14 +50,13 @@ const play = function(){
   
     const memoryPieces = makeArray();
     memoryPieces.forEach(function(memoryPiece){
-    const divs = document.createElement("div");
-    const number =  document.createElement("p");
-    number.innerHTML = memoryPiece.number;
-    divs.setAttribute('class', 'memoryPiece');
-    number.setAttribute('class', 'hej');
-    divs.setAttribute('data-number', memoryPiece.number);
-    document.body.getElementsByClassName('memoryContainer')[0].appendChild(divs);
-    document.body.getElementsByClassName('memoryPiece')[index].appendChild(number);
+    const btns = document.createElement("button");
+    btns.innerHTML = memoryPiece.number;
+    btns.setAttribute('class', 'memoryPiece');
+    // number.setAttribute('class', 'hej');
+    btns.setAttribute('data-number', memoryPiece.number);
+    document.body.getElementsByClassName('memoryContainer')[0].appendChild(btns);
+    // document.body.getElementsByClassName('memoryPiece')[index].appendChild(number);
     index++;
   })
   
@@ -67,16 +65,11 @@ const play = function(){
   for (var i = 0; i < numberOfMemoryPieces.length; i++) {
     numberOfMemoryPieces[i].addEventListener('click', function(){
       
-      let theEventTarget = event.target;
-      
-      if (theEventTarget.className != 'memoryPiece') {
-        
-        theEventTarget = event.path[1];
-        
-      }
+      let theEventTarget = event.target; 
+       
       if (theEventTarget.className === 'memoryPiece') {
-        // console.log(theEventTarget.getElementsByClassName('hej')[0].classList.add('hej1'))
-        theEventTarget.classList.add('hej1');
+        // console.log(theEventTarget.getElementsByClassName('hej')[0].classList.add('memoryPieceText'))
+        theEventTarget.classList.add('memoryPieceText');
       }
       
       const currentCard = theEventTarget.dataset.number;
@@ -84,12 +77,19 @@ const play = function(){
         prevCardTargetInfo = theEventTarget;
         prevCard = currentCard;
       }else if (prevCard !== "") {
-          if (prevCard === currentCard) {
+          if (prevCard === currentCard && prevCardTargetInfo != theEventTarget) {
             console.log(prevCardTargetInfo)
             prevCard = "";
             prevCardTargetInfo = "";
             score.push(1);
             window.document.getElementById('score').textContent = score.length;
+            window.document.querySelectorAll('.memoryPiece').forEach(function(onePiece){
+              if (onePiece.dataset.number === theEventTarget.dataset.number) {
+                onePiece.disabled = true;
+              }
+            })
+            prevCardTargetInfo.disabled = true;
+            theEventTarget.disabled = true;
             if (score.length === 8) {
               window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
             }
@@ -97,8 +97,8 @@ const play = function(){
           }else if (prevCard !== currentCard) {
             console.log(currentCard) 
             setTimeout(function(){
-              theEventTarget.classList.remove('hej1');
-              prevCardTargetInfo.classList.remove('hej1');
+              theEventTarget.classList.remove('memoryPieceText');
+              prevCardTargetInfo.classList.remove('memoryPieceText');
               prevCardTargetInfo = "";
               prevCard = "";
             }, 800)
@@ -117,8 +117,12 @@ const replay = function(){
   }
   myNode.classList.remove('memoryContainerShow')
   window.document.querySelector('.gameCompleteMessage').classList.remove('gameCompleteMessageShow');
+  for (var i = 0; i < document.body.getElementsByClassName('memoryPiece').length; i++) {
+    document.body.getElementsByClassName('memoryPiece')[i].disabled = false;
+  }
   setTimeout(function(){
     play();
+    window.document.getElementById('score').textContent = '0';
   }, 2500)
 }
 

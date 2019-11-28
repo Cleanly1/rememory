@@ -61,6 +61,7 @@ body {
   justify-content: center;
   margin-bottom: 10px;
   font-size: 24px;
+  width: auto;
 }
 
 .memoryContainer {
@@ -92,6 +93,8 @@ body {
   box-shadow: 2px 2px 5px black;
   background: var(--bg-color);
   border: 2px solid var(--accent-color);
+  font-size: 0;
+  font-family: var(--font);
   transform: rotateY(180deg);
   transition-duration: 0.8s; 
 }
@@ -101,24 +104,11 @@ body {
   transition-duration: 2s;
 }
 
-.memoryPiece p {
-  cursor: pointer;
-  opacity: 0;
+.memoryPieceText {
   color: var(--accent-color);
-  font-family: var(--font);
-  transition-delay: 0.1s;
-  transition-duration: 0.4s;
-}
-
-.hej1 {
-  
+  font-size: 16px;
   transform: rotateY(0deg);
-}
-
-.hej1 p{
-  opacity: 1;
-}
-
+} 
 
 .gameCompleteMessage {
   position: fixed;
