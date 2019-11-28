@@ -11,13 +11,15 @@
     <title>Remeber this?</title>
   </head>
   <body>
-    <h2 class="displayScore">Score: <span id="score">0</span>/8</h2>
+    <h2 class="displayScore">Score: <span id="score">0</span>/<span id="maxScore"> </span></h2>
     <h1 class="title" >Rememory</h1>
     <a class="facebook" href="http://www.facebook.com/sharer.php?u=https://fuzzymemory.netlify.com/">
     <img src="shareOnFacebook.png" alt="facebook share">
     </a>
     <div class="menu">
-      <button type="button" name="start" class="buttons">Start</button>
+      <button type="button" name="start" class="buttons" data-mode="8">Start 8x8</button>
+      <button type="button" name="start" class="buttons" data-mode="12">Start 12x12</button>
+      <button type="button" name="start" class="buttons" data-mode="16">Start 16x16</button>
       <button type="button" name="restart" class="buttons" disabled>Restart</button>
     </div>
     <div class="memoryContainer">

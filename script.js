@@ -1,3 +1,13 @@
+
+for (var i = 0; i < window.document.querySelectorAll('.buttons').length-1; i++) {
+  window.document.getElementsByClassName('buttons')[i].addEventListener('click', function(){ 
+    mode = event.target.dataset.mode;
+    play(mode);
+  })
+}
+
+
+
 const shuffle = function(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -21,16 +31,17 @@ const getRndInteger = function(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
 
-const makeArray = function() {
+const makeArray = function(mode) {
   let memoryPieces = []
-  for (var i = 1; i < 9; i++) {
+  
+  for (var i = 1; i <= mode; i++) {
     memoryPieces.push({number: i, })
   }
   
   original = memoryPieces; 
   duplicate = original.slice();
   fullMemoryPieces = original.concat(duplicate);
-  
+  console.log(fullMemoryPieces)
   return shuffle(fullMemoryPieces);
 }
 
@@ -44,33 +55,46 @@ const makeArray = function() {
 // }
 
 
-const play = function(){ 
+const play = function(mode){ 
   let prevCard = "";
   let prevCardTargetInfo = "";
   let score = [];
   var index = 0;
   let theScoreCounter = window.document.getElementById('score').textContent; 
+  window.document.getElementById('maxScore').textContent = mode;
   window.document.getElementsByClassName('displayScore')[0].style.display = 'initial';
   window.document.querySelector('.memoryContainer').classList.add('memoryContainerShow');
   window.document.querySelector('.menu').classList.add('menuAfterStart');
-  window.document.getElementsByClassName('buttons')['start'].style.display = 'none';
+  const startButtons = window.document.getElementsByClassName('buttons')
+  for (var i = 0; i < startButtons.length-1; i++) {
+    startButtons[i].style.display = 'none';
+  }
   window.document.getElementsByClassName('buttons')['restart'].disabled = false;
   
-    const memoryPieces = makeArray();
-    memoryPieces.forEach(function(memoryPiece){
-    const btns = document.createElement("button");
-    btns.innerHTML = memoryPiece.number;
-    btns.setAttribute('class', 'memoryPiece');
-    // number.setAttribute('class', 'hej');
-    btns.setAttribute('data-number', memoryPiece.number);
-    btns.style.order = getRndInteger(0,16);
-    document.body.getElementsByClassName('memoryContainer')[0].appendChild(btns);
-    // document.body.getElementsByClassName('memoryPiece')[index].appendChild(number);
-    index++;
-  })
   
+  
+    const memoryPieces = makeArray(mode);
+    memoryPieces.forEach(function(memoryPiece){
+      const btns = document.createElement("button");
+      btns.innerHTML = memoryPiece.number;
+      btns.setAttribute('class', 'memoryPiece');
+      // number.setAttribute('class', 'hej');
+      btns.setAttribute('data-number', memoryPiece.number);
+      btns.style.order = getRndInteger(0 , mode*2);
+      document.body.getElementsByClassName('memoryContainer')[0].appendChild(btns);
+      // document.body.getElementsByClassName('memoryPiece')[index].appendChild(number);
+      index++;
+  })
+  if (mode == 16) {
+    window.document.getElementsByClassName('memoryContainerShow')[0].style.width = '80vw';
+    for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
+      window.document.getElementsByClassName('memoryPiece')[i].style = 'margin:0 1%;'
+      console.log()
+    }
+  }
   const numberOfMemoryPieces = window.document.querySelectorAll('.memoryPiece');
 
+  console.log(numberOfMemoryPieces);
   for (var i = 0; i < numberOfMemoryPieces.length; i++) {
     numberOfMemoryPieces[i].addEventListener('click', function(){
       
@@ -99,7 +123,7 @@ const play = function(){
               }
             })
             
-            if (score.length === 8) {
+            if (score.length === mode) {
               window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
             }
             // if (score.length > 3) {
@@ -122,9 +146,12 @@ const play = function(){
         
     })
   }
-}
+  
+} 
 
-const replay = function(){
+
+
+const replay = function(mode){
   const myNode = window.document.getElementsByClassName("memoryContainer")[0];
   while (myNode.firstChild) {
     myNode.removeChild(myNode.firstChild);
@@ -137,15 +164,12 @@ const replay = function(){
   }
   
   setTimeout(function(){
-    play();
+    play(mode);
     window.document.getElementById('score').textContent = '0';
   }, 2500)
 }
-
-window.document.getElementsByClassName('buttons')['start'].addEventListener('click', function(){ 
-  play();
-})
+ 
 
 window.document.getElementsByClassName('buttons')['restart'].addEventListener('click', function(){
-  replay();
-})
+  replay(window.mode);
+});
