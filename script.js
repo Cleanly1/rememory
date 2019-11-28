@@ -68,15 +68,17 @@ const play = function(){
       let theEventTarget = event.target; 
        
       if (theEventTarget.className === 'memoryPiece') {
-        // console.log(theEventTarget.getElementsByClassName('hej')[0].classList.add('memoryPieceText'))
+        
         theEventTarget.classList.add('memoryPieceText');
       }
       
       const currentCard = theEventTarget.dataset.number;
+      
       if (prevCard === "") {
         prevCardTargetInfo = theEventTarget;
         prevCard = currentCard;
       }else if (prevCard !== "") {
+        
           if (prevCard === currentCard && prevCardTargetInfo != theEventTarget) {
             console.log(prevCardTargetInfo)
             prevCard = "";
@@ -88,8 +90,7 @@ const play = function(){
                 onePiece.disabled = true;
               }
             })
-            prevCardTargetInfo.disabled = true;
-            theEventTarget.disabled = true;
+            
             if (score.length === 8) {
               window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
             }
@@ -115,20 +116,20 @@ const replay = function(){
   while (myNode.firstChild) {
     myNode.removeChild(myNode.firstChild);
   }
+  
   myNode.classList.remove('memoryContainerShow')
   window.document.querySelector('.gameCompleteMessage').classList.remove('gameCompleteMessageShow');
   for (var i = 0; i < document.body.getElementsByClassName('memoryPiece').length; i++) {
     document.body.getElementsByClassName('memoryPiece')[i].disabled = false;
   }
+  
   setTimeout(function(){
     play();
     window.document.getElementById('score').textContent = '0';
   }, 2500)
 }
 
- 
-// console.log(memoryPieces);
-window.document.getElementsByClassName('buttons')['start'].addEventListener('click', function(){
+window.document.getElementsByClassName('buttons')['start'].addEventListener('click', function(){ 
   play();
 })
 

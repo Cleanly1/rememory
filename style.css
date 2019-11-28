@@ -106,7 +106,7 @@ body {
 
 .memoryPieceText {
   color: var(--accent-color);
-  font-size: 16px;
+  font-size: 24px;
   transform: rotateY(0deg);
 } 
 
