@@ -1,5 +1,10 @@
 @media (max-width:528px) {
   
+  .displayScore {
+    position: inherit;
+    align-self: center;
+    margin: 0;
+  }
   
   .facebook {
     width: 100px;
