@@ -86,10 +86,9 @@ const play = function(mode){
       index++;
   })
   if (mode == 16) {
-    window.document.getElementsByClassName('memoryContainerShow')[0].style.width = '110vh';
+    window.document.getElementsByClassName('memoryContainer')[0].classList.add('mode16');
     for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
-      window.document.getElementsByClassName('memoryPiece')[i].style = 'margin:0 1%;'
-      console.log()
+      window.document.getElementsByClassName('memoryPiece')[i].classList.add('memoryPieceMode16');
     }
   }
   const numberOfMemoryPieces = window.document.querySelectorAll('.memoryPiece');
@@ -122,8 +121,7 @@ const play = function(mode){
                 onePiece.disabled = true;
               }
             })
-            
-            if (score.length === mode) {
+            if (mode == score.length) {
               window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
             }
             // if (score.length > 3) {
@@ -161,6 +159,11 @@ const replay = function(mode){
   window.document.querySelector('.gameCompleteMessage').classList.remove('gameCompleteMessageShow');
   for (var i = 0; i < document.body.getElementsByClassName('memoryPiece').length; i++) {
     document.body.getElementsByClassName('memoryPiece')[i].disabled = false;
+  }
+  if (mode == 16) {
+    
+    window.document.getElementsByClassName('memoryContainer')[0].classList.remove('mode16');
+    
   }
   
   setTimeout(function(){

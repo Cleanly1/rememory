@@ -103,6 +103,11 @@ body {
   padding: 5vh 5vh;
 }
 
+.mode16 {
+  width: 110vh;
+}
+
+
 .memoryPiece {
   cursor: pointer;
   display: flex;
@@ -127,8 +132,13 @@ body {
   transform: rotateY(0deg);
 } 
 
+.memoryPieceMode16 {
+  margin: 0 1%;
+}
+
 .gameCompleteMessage {
   position: fixed;
+  top: 110%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -136,7 +146,7 @@ body {
   background-color: var(--bg-color);
   padding: 10px;
   border: 2px solid var(--accent-color);
-  transform: translateY(1100%);
+  z-index: 10;
   transition-duration: 2s; 
 }
 
@@ -146,7 +156,7 @@ body {
 }
 
 .gameCompleteMessageShow {
-  transform: translateX(0%);
+  transform: translateY(-500%);
 }
 
 .gameCompleteMessage h1 {
