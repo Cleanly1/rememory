@@ -65,6 +65,7 @@ const play = function(mode){
   window.document.getElementsByClassName('displayScore')[0].style.display = 'initial';
   window.document.querySelector('.memoryContainer').classList.add('memoryContainerShow');
   window.document.querySelector('.menu').classList.add('menuAfterStart');
+  window.document.querySelector('.title').classList.add('titleAfterStart');
   const startButtons = window.document.getElementsByClassName('buttons')
   for (var i = 0; i < startButtons.length-1; i++) {
     startButtons[i].style.display = 'none';
@@ -85,11 +86,11 @@ const play = function(mode){
       // document.body.getElementsByClassName('memoryPiece')[index].appendChild(number);
       index++;
   })
-  if (mode == 16) {
+  if (mode == 16 && window.innerWidth >= 1024) {
     window.document.getElementsByClassName('memoryContainer')[0].classList.add('mode16');
-    for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
-      window.document.getElementsByClassName('memoryPiece')[i].classList.add('memoryPieceMode16');
-    }
+      for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
+        window.document.getElementsByClassName('memoryPiece')[i].style.margin = '0 1%';
+      }
   }
   const numberOfMemoryPieces = window.document.querySelectorAll('.memoryPiece');
 

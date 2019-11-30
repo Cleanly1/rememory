@@ -12,15 +12,20 @@ body {
   align-items: center;
   background: var(--bg-color);
   height: 100vh;
+  overflow: hidden;
 }
 
 .title {
   color: var(--accent-color);
-  margin-top: 0;
+  margin-top: 20px;
   margin-bottom: 2%;
   font-family: var(--font);
   font-weight: 400;
   font-size: 46px;
+}
+
+.titleAfterStart {
+  margin-top: 0;
 }
 
 .facebook {
@@ -101,6 +106,7 @@ body {
 .memoryContainerShow {
   width: 80vh;
   padding: 5vh 5vh;
+  border: 4px solid lightgrey;
 }
 
 .mode16 {
