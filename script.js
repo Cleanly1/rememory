@@ -77,13 +77,16 @@ const play = function(mode){
     const memoryPieces = makeArray(mode);
     memoryPieces.forEach(function(memoryPiece){
       const btns = document.createElement("button");
+      // const lis = document.createElement("li");
       btns.innerHTML = memoryPiece.number;
       btns.setAttribute('class', 'memoryPiece');
+      // lis.setAttribute('class', 'hej');
       // number.setAttribute('class', 'hej');
       btns.setAttribute('data-number', memoryPiece.number);
-      btns.style.order = getRndInteger(0 , mode*2);
+      // btns.style.order = getRndInteger(0 , (mode*2));
+      // document.body.getElementsByClassName('memoryContainer')[0].appendChild(lis);
       document.body.getElementsByClassName('memoryContainer')[0].appendChild(btns);
-      // document.body.getElementsByClassName('memoryPiece')[index].appendChild(number);
+      // document.body.getElementsByClassName('hej')[index].appendChild(btns);
       index++;
   })
   if (mode == 16 && window.innerWidth >= 1024) {
@@ -93,7 +96,15 @@ const play = function(mode){
       }
   }
   const numberOfMemoryPieces = window.document.querySelectorAll('.memoryPiece');
-
+  // for insane mode
+//   if (mode == 20) {
+//   setInterval(function(){
+//     for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
+//       window.document.getElementsByClassName('memoryPiece')[i].style.order = getRndInteger(0 , (mode*2));
+//     }
+// 
+//   },10*1000);
+// }
   console.log(numberOfMemoryPieces);
   for (var i = 0; i < numberOfMemoryPieces.length; i++) {
     numberOfMemoryPieces[i].addEventListener('click', function(){
@@ -175,5 +186,9 @@ const replay = function(mode){
  
 
 window.document.getElementsByClassName('buttons')['restart'].addEventListener('click', function(){
+  replay(window.mode);
+});
+
+window.document.getElementsByClassName('yesButton')[0].addEventListener('click', function(){
   replay(window.mode);
 });

@@ -1,7 +1,7 @@
 :root {
-  --accent-color: white;
-  --bg-color: black;
-  --bg-color-container: whitesmoke;
+  --accent-color: black;
+  --bg-color: white;
+  --bg-color-container: black;
   --font: 'Oswald', sans-serif;
 }
 
@@ -113,6 +113,11 @@ body {
   width: 110vh;
 }
 
+.hej {
+  list-style: none;
+  margin: 0 5%;
+}
+
 
 .memoryPiece {
   cursor: pointer;
@@ -159,14 +164,24 @@ body {
 .gameCompleteMessage p {
   color: var(--accent-color);
   font-family: var(--font);
+  text-align: center;
 }
 
 .gameCompleteMessageShow {
-  transform: translateY(-500%);
+  transform: translateY(-480%);
 }
 
 .gameCompleteMessage h1 {
   color: var(--accent-color);
   font-family: var(--font);
 }
-
+.yesButton {
+cursor: pointer;
+height: 100%;
+width: auto;
+font-family: var(--font);
+color: var(--accent-color);
+background-color: var(--bg-color);
+border: 0;
+outline: none;
+}

@@ -1,3 +1,12 @@
+
+@media (prefers-color-scheme: dark) { 
+    :root  { 
+    --accent-color: white;
+    --bg-color: black;
+    --bg-color-container: whitesmoke;
+  }
+}
+
 @media (max-width:528px) {
   
   .displayScore {
