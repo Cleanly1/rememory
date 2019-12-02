@@ -45,14 +45,14 @@ const makeArray = function(mode) {
   return shuffle(fullMemoryPieces);
 }
 
-// function getRandomColor() {
-//   var letters = '0123456789ABCDEF';
-//   var color = '#';
-//   for (var i = 0; i < 6; i++) {
-//     color += letters[Math.floor(Math.random() * 16)];
-//   }
-//   return color;
-// }
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 
 
 const play = function(mode){ 
@@ -105,6 +105,12 @@ const play = function(mode){
 // 
 //   },10*1000);
 // }
+
+
+
+
+
+
   console.log(numberOfMemoryPieces);
   for (var i = 0; i < numberOfMemoryPieces.length; i++) {
     numberOfMemoryPieces[i].addEventListener('click', function(){
@@ -114,6 +120,7 @@ const play = function(mode){
       if (theEventTarget.className === 'memoryPiece') {
         
         theEventTarget.classList.add('memoryPieceText');
+        
       }
       
       const currentCard = theEventTarget.dataset.number;
@@ -146,6 +153,8 @@ const play = function(mode){
             
           }else if (prevCard !== currentCard) {
             setTimeout(function(){ 
+              // theEventTarget.removeAttribute("style")
+              // prevCardTargetInfo.removeAttribute("style")
               theEventTarget.classList.remove('memoryPieceText');
               prevCardTargetInfo.classList.remove('memoryPieceText');
               prevCardTargetInfo = "";
