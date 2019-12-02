@@ -5,6 +5,9 @@
     --bg-color: black;
     --bg-color-container: whitesmoke;
   }
+  .memoryPiece {
+    box-shadow: 2px 2px 5px black;
+  }
 }
 
 @media (max-width:528px) {
@@ -54,5 +57,27 @@
   .memoryContainerShow {
     width: 80vw;
     padding: 2.5vw 2.5vw;
+  }
+  
+}
+
+@media (max-width:320px){
+  .menu {
+    font-size: 40px;
+  }
+  
+  .memoryContainerShow {
+    width: 90vw;
+    padding: 2.5vw 2.5vw;
+  }
+  
+  .memoryPiece {
+    height: 46px;
+    width: 46px;
+    margin: 0 3%;
+  }
+  
+  [name~='startHard'] {
+    display: none;
   }
 }
