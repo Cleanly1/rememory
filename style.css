@@ -43,9 +43,7 @@ body {
 
 .displayScore {
   display: none;
-  position: absolute;
-  top: 50px;
-  left: 100px;
+  position: absolute; 
   color: var(--accent-color);
   font-family: var(--font);
 }
