@@ -59,7 +59,7 @@ const play = function(mode){
   let prevCard = "";
   let prevCardTargetInfo = "";
   let score = [];
-  var index = 0;
+  // var index = 0;
   let theScoreCounter = window.document.getElementById('score').textContent; 
   window.document.getElementById('maxScore').textContent = mode;
   window.document.getElementsByClassName('displayScore')[0].style.display = 'initial';
@@ -87,7 +87,7 @@ const play = function(mode){
       // document.body.getElementsByClassName('memoryContainer')[0].appendChild(lis);
       document.body.getElementsByClassName('memoryContainer')[0].appendChild(btns);
       // document.body.getElementsByClassName('hej')[index].appendChild(btns);
-      index++;
+      // index++;
   })
   if (mode == 16 && window.innerWidth >= 1024) {
     window.document.getElementsByClassName('memoryContainer')[0].classList.add('mode16');
@@ -150,7 +150,7 @@ const play = function(mode){
               prevCardTargetInfo.classList.remove('memoryPieceText');
               prevCardTargetInfo = "";
               prevCard = "";
-            }, 800)
+            }, 500)
           }
       } 
         
