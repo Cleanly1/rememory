@@ -1,4 +1,4 @@
-
+// first declare so mode becomes global
 for (var i = 0; i < window.document.querySelectorAll('.buttons').length-1; i++) {
   window.document.getElementsByClassName('buttons')[i].addEventListener('click', function(){ 
     mode = event.target.dataset.mode;
@@ -7,7 +7,7 @@ for (var i = 0; i < window.document.querySelectorAll('.buttons').length-1; i++) 
 }
 
 
-
+// Shuffles the full array
 const shuffle = function(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -26,8 +26,8 @@ const shuffle = function(array) {
 
   return array;
 }
-
-const getRndInteger = function(min, max) {
+// random function for insane mode
+const getRandomInteger = function(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
 
@@ -45,16 +45,16 @@ const makeArray = function(mode) {
   return shuffle(fullMemoryPieces);
 }
 
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
+// function getRandomColor() {
+//   var letters = '0123456789ABCDEF';
+//   var color = '#';
+//   for (var i = 0; i < 6; i++) {
+//     color += letters[Math.floor(Math.random() * 16)];
+//   }
+//   return color;
+// }
 
-
+// the main play function. It takes in mode for number of memory pieces
 const play = function(mode){ 
   let prevCard = "";
   let prevCardTargetInfo = "";
@@ -74,43 +74,36 @@ const play = function(mode){
   
   
   
-    const memoryPieces = makeArray(mode);
-    memoryPieces.forEach(function(memoryPiece){
-      const btns = document.createElement("button");
-      // const lis = document.createElement("li");
-      btns.innerHTML = memoryPiece.number;
-      btns.setAttribute('class', 'memoryPiece');
-      // lis.setAttribute('class', 'hej');
-      // number.setAttribute('class', 'hej');
-      btns.setAttribute('data-number', memoryPiece.number);
-      // btns.style.order = getRndInteger(0 , (mode*2));
-      // document.body.getElementsByClassName('memoryContainer')[0].appendChild(lis);
-      document.body.getElementsByClassName('memoryContainer')[0].appendChild(btns);
-      // document.body.getElementsByClassName('hej')[index].appendChild(btns);
-      // index++;
+  const memoryPieces = makeArray(mode);
+  memoryPieces.forEach(function(memoryPiece){
+    const btns = document.createElement("button");
+    // const lis = document.createElement("li");
+    btns.innerHTML = memoryPiece.number;
+    btns.setAttribute('class', 'memoryPiece'); 
+    btns.setAttribute('data-number', memoryPiece.number);
+    // btns.style.order = getRndInteger(0 , (mode*2));
+    // document.body.getElementsByClassName('memoryContainer')[0].appendChild(lis);
+    document.body.getElementsByClassName('memoryContainer')[0].appendChild(btns);
+    // document.body.getElementsByClassName('hej')[index].appendChild(btns);
+    // index++;
   })
-  if (mode == 16 && window.innerWidth >= 1024) {
-    window.document.getElementsByClassName('memoryContainer')[0].classList.add('mode16');
-      for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
-        window.document.getElementsByClassName('memoryPiece')[i].style.margin = '0 1%';
-      }
-  }
+if (mode == 16 && window.innerWidth >= 1024) {
+  window.document.getElementsByClassName('memoryContainer')[0].classList.add('mode16');
+    for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
+      window.document.getElementsByClassName('memoryPiece')[i].style.margin = '0 1%';
+    }
+}
   const numberOfMemoryPieces = window.document.querySelectorAll('.memoryPiece');
   // for insane mode
 //   if (mode == 20) {
 //   setInterval(function(){
 //     for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
-//       window.document.getElementsByClassName('memoryPiece')[i].style.order = getRndInteger(0 , (mode*2));
+//       window.document.getElementsByClassName('memoryPiece')[i].style.order = getRandomInteger(0 , (mode*2));
 //     }
 // 
 //   },10*1000);
 // }
-
-
-
-
-
-
+ 
   console.log(numberOfMemoryPieces);
   for (var i = 0; i < numberOfMemoryPieces.length; i++) {
     numberOfMemoryPieces[i].addEventListener('click', function(){

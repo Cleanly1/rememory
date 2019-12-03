@@ -43,7 +43,10 @@ body {
 
 .displayScore {
   display: none;
-  position: absolute; 
+  /* position: absolute;  */
+  top: 40px;
+  left: 100px;
+  margin: 0;
   color: var(--accent-color);
   font-family: var(--font);
 }
