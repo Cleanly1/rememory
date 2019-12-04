@@ -20,7 +20,7 @@
   }
   
   .facebook {
-    font-size: 20px;
+    font-size: 18px;
   }
   
   .menu {
@@ -60,6 +60,10 @@
     transform: translateY(-400%);
   }
   
+  [name~='startInsane'] {
+    display: none;
+  }
+  
 }
 
 @media (max-width:320px){
@@ -89,6 +93,10 @@
   }
   
   [name~='startHard'] {
+    display: none;
+  }
+  
+  [name~='startInsane'] {
     display: none;
   }
 }

@@ -14,6 +14,7 @@ body {
   background: var(--bg-color);
   height: 100vh;
   overflow: hidden;
+  transition-duration: 0.2s; 
 }
 
 .title {

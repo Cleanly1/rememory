@@ -45,14 +45,15 @@ const makeArray = function(mode) {
   return shuffle(fullMemoryPieces);
 }
 
-// function getRandomColor() {
-//   var letters = '0123456789ABCDEF';
-//   var color = '#';
-//   for (var i = 0; i < 6; i++) {
-//     color += letters[Math.floor(Math.random() * 16)];
-//   }
-//   return color;
-// }
+// For insane mode
+function getRandomColor() {
+  var letters = '0123456789ABCDE';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 15)];
+  }
+  return color;
+}
 
 // the main play function. It takes in mode for number of memory pieces
 const play = function(mode){ 
@@ -87,7 +88,7 @@ const play = function(mode){
     // document.body.getElementsByClassName('hej')[index].appendChild(btns);
     // index++;
   })
-if (mode == 16 && window.innerWidth >= 1024) {
+if (mode >= 16 && window.innerWidth >= 1024) {
   window.document.getElementsByClassName('memoryContainer')[0].classList.add('mode16');
     for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
       window.document.getElementsByClassName('memoryPiece')[i].style.margin = '0 1%';
@@ -95,14 +96,14 @@ if (mode == 16 && window.innerWidth >= 1024) {
 }
   const numberOfMemoryPieces = window.document.querySelectorAll('.memoryPiece');
   // for insane mode
-//   if (mode == 20) {
-//   setInterval(function(){
-//     for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
-//       window.document.getElementsByClassName('memoryPiece')[i].style.order = getRandomInteger(0 , (mode*2));
-//     }
-// 
-//   },10*1000);
-// }
+  if (mode == 20) {
+  setInterval(function(){
+    for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
+      window.document.getElementsByClassName('memoryPiece')[i].style.order = getRandomInteger(0 , (mode*2));
+    }
+  
+  },10*1000);
+}
  
   console.log(numberOfMemoryPieces);
   for (var i = 0; i < numberOfMemoryPieces.length; i++) {
@@ -136,13 +137,13 @@ if (mode == 16 && window.innerWidth >= 1024) {
             if (mode == score.length) {
               window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
             }
-            // if (score.length > 3) {
-            //   setInterval(function(){
-            //     document.documentElement.style.setProperty('--accent-color', getRandomColor());
-            //     document.documentElement.style.setProperty('--bg-color', getRandomColor());
-            //   },400)
-            // 
-            // }
+            if (score.length === 4 && mode == 20) {
+              setInterval(function(){
+                // document.documentElement.style.setProperty('--accent-color', getRandomColor());
+                document.documentElement.style.setProperty('--bg-color', getRandomColor());
+              },400)
+            
+            }
             
           }else if (prevCard !== currentCard) {
             setTimeout(function(){ 
