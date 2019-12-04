@@ -1,15 +1,6 @@
-// first declare so mode becomes global
+// Declaring of varibales for global use
 let mode;
-let time;
-
-for (var i = 0; i < window.document.querySelectorAll('.buttons').length-1; i++) {
-  window.document.getElementsByClassName('buttons')[i].addEventListener('click', function(){ 
-    mode = event.target.dataset.mode;
-    play(mode);
-  })
-}
-
-
+let time; 
 // Shuffles the full array
 const shuffle = function(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -152,6 +143,7 @@ if (mode >= 16 && window.innerWidth >= 1024) {
             if (mode == score.length) {
               window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
               clearInterval(time);
+              document.querySelector('.timeDisplayFinish').textContent = seconds;
             }
             if (score.length === 4 && mode === 20) {
               setInterval(function(){
@@ -204,8 +196,12 @@ const replay = function(mode, time){
   }, 2500)
 }
 
-
-
+for (var i = 0; i < window.document.querySelectorAll('.buttons').length-1; i++) {
+  window.document.getElementsByClassName('buttons')[i].addEventListener('click', function(){ 
+    mode = event.target.dataset.mode;
+    play(mode);
+  })
+}
 
 window.document.getElementsByClassName('buttons')['restart'].addEventListener('click', function(){
   replay(window.mode, time);

@@ -181,7 +181,7 @@ body {
 }
 
 .gameCompleteMessageShow {
-  transform: translateY(-110vh);
+  transform: translateY(-80vh);
 }
 
 .gameCompleteMessage h1 {
