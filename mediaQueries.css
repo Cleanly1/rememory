@@ -10,13 +10,10 @@
   }
 }
 
-@media (max-width:528px) {
+@media (max-width:425px) {
   
-  .displayScore {
-    position: inherit;
-    align-self: center;
-    margin: 0;
-    /* margin-top: 20px; */
+  .clickCounter {
+    font-size: 10px;
   }
   
   .facebook {
@@ -84,7 +81,7 @@
   
   .facebook {
     top: 5px;
-    left: 5px;
+    right: 5px;
     width: 60px;
   }
   

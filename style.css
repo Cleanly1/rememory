@@ -26,6 +26,20 @@ body {
   font-size: 46px;
 }
 
+.clickCounter {
+  display: none;
+  flex-flow: column nowrap;
+  font-family: var(--font);
+  color: var(--accent-color);
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.clickCounterShow {
+  display: flex;
+}
+
 .titleAfterStart {
   margin-top: 0;
 }
@@ -148,7 +162,7 @@ body {
 
 .gameCompleteMessage {
   position: fixed;
-  top: 110%;
+  top: 110vh;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -167,7 +181,7 @@ body {
 }
 
 .gameCompleteMessageShow {
-  transform: translateY(-480%);
+  transform: translateY(-110vh);
 }
 
 .gameCompleteMessage h1 {

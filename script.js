@@ -1,4 +1,7 @@
 // first declare so mode becomes global
+let mode;
+let time;
+
 for (var i = 0; i < window.document.querySelectorAll('.buttons').length-1; i++) {
   window.document.getElementsByClassName('buttons')[i].addEventListener('click', function(){ 
     mode = event.target.dataset.mode;
@@ -60,11 +63,18 @@ const play = function(mode){
   let prevCard = "";
   let prevCardTargetInfo = "";
   let score = [];
+  let seconds = 1;
+  let clicks = 0;
+  document.querySelector('.clicks').textContent = clicks;
+  time = setInterval(function(){
+    document.querySelector('h1').textContent = seconds++;
+  }, 1000)
   // var index = 0;
   let theScoreCounter = window.document.getElementById('score').textContent; 
   window.document.getElementById('maxScore').textContent = mode;
   window.document.getElementsByClassName('displayScore')[0].style.display = 'initial';
   window.document.querySelector('.memoryContainer').classList.add('memoryContainerShow');
+  window.document.querySelector('.clickCounter').classList.add('clickCounterShow');
   window.document.querySelector('.menu').classList.add('menuAfterStart');
   window.document.querySelector('.title').classList.add('titleAfterStart');
   const startButtons = window.document.getElementsByClassName('buttons')
@@ -111,6 +121,11 @@ if (mode >= 16 && window.innerWidth >= 1024) {
       
       let theEventTarget = event.target; 
        
+      if (theEventTarget.classList[1] !== 'memoryPieceText') {
+      
+        document.querySelector('.clicks').textContent = ++clicks;
+      }
+      
       if (theEventTarget.className === 'memoryPiece') {
         
         theEventTarget.classList.add('memoryPieceText');
@@ -136,8 +151,9 @@ if (mode >= 16 && window.innerWidth >= 1024) {
             })
             if (mode == score.length) {
               window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
+              clearInterval(time);
             }
-            if (score.length === 4 && mode == 20) {
+            if (score.length === 4 && mode === 20) {
               setInterval(function(){
                 // document.documentElement.style.setProperty('--accent-color', getRandomColor());
                 document.documentElement.style.setProperty('--bg-color', getRandomColor());
@@ -164,7 +180,8 @@ if (mode >= 16 && window.innerWidth >= 1024) {
 
 
 
-const replay = function(mode){
+const replay = function(mode, time){
+  clearInterval(time);
   const myNode = window.document.getElementsByClassName("memoryContainer")[0];
   while (myNode.firstChild) {
     myNode.removeChild(myNode.firstChild);
@@ -186,12 +203,14 @@ const replay = function(mode){
     window.document.getElementById('score').textContent = '0';
   }, 2500)
 }
- 
+
+
+
 
 window.document.getElementsByClassName('buttons')['restart'].addEventListener('click', function(){
-  replay(window.mode);
+  replay(window.mode, time);
 });
 
 window.document.getElementsByClassName('yesButton')[0].addEventListener('click', function(){
-  replay(window.mode);
+  replay(window.mode, time);
 });
