@@ -3,7 +3,7 @@ let mode;
 let time; 
 // Shuffles the full array
 const shuffle = function(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+  let currentIndex = array.length, temporaryValue, randomIndex;
 
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
@@ -28,7 +28,7 @@ const getRandomInteger = function(min, max) {
 const makeArray = function(mode) {
   let memoryPieces = []
   
-  for (var i = 1; i <= mode; i++) {
+  for (let i = 1; i <= mode; i++) {
     memoryPieces.push({number: i, })
   }
   
@@ -41,9 +41,9 @@ const makeArray = function(mode) {
 
 // For insane mode
 function getRandomColor() {
-  var letters = '0123456789ABCDE';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
+  let letters = '0123456789ABCDE';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 15)];
   }
   return color;
@@ -53,14 +53,14 @@ function getRandomColor() {
 const play = function(mode){ 
   let prevCard = "";
   let prevCardTargetInfo = "";
-  let score = [];
-  let seconds = 1;
+  let score = 0;
+  let seconds = 0;
   let clicks = 0;
   document.querySelector('.clicks').textContent = clicks;
   time = setInterval(function(){
-    document.querySelector('h1').textContent = seconds++;
+    document.querySelector('h1').textContent = ++seconds;
   }, 1000)
-  // var index = 0;
+  // let index = 0;
   let theScoreCounter = window.document.getElementById('score').textContent; 
   window.document.getElementById('maxScore').textContent = mode;
   window.document.getElementsByClassName('displayScore')[0].style.display = 'initial';
@@ -69,7 +69,7 @@ const play = function(mode){
   window.document.querySelector('.menu').classList.add('menuAfterStart');
   window.document.querySelector('.title').classList.add('titleAfterStart');
   const startButtons = window.document.getElementsByClassName('buttons')
-  for (var i = 0; i < startButtons.length-1; i++) {
+  for (let i = 0; i < startButtons.length-1; i++) {
     startButtons[i].style.display = 'none';
   }
   window.document.getElementsByClassName('buttons')['restart'].disabled = false;
@@ -91,7 +91,7 @@ const play = function(mode){
   })
 if (mode >= 16 && window.innerWidth >= 1024) {
   window.document.getElementsByClassName('memoryContainer')[0].classList.add('mode16');
-    for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
+    for (let i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
       window.document.getElementsByClassName('memoryPiece')[i].style.margin = '0 1%';
     }
 }
@@ -99,7 +99,7 @@ if (mode >= 16 && window.innerWidth >= 1024) {
   // for insane mode
   if (mode == 20) {
   setInterval(function(){
-    for (var i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
+    for (let i = 0; i < window.document.getElementsByClassName('memoryPiece').length; i++) {
       window.document.getElementsByClassName('memoryPiece')[i].style.order = getRandomInteger(0 , (mode*2));
     }
   
@@ -107,7 +107,7 @@ if (mode >= 16 && window.innerWidth >= 1024) {
 }
  
   console.log(numberOfMemoryPieces);
-  for (var i = 0; i < numberOfMemoryPieces.length; i++) {
+  for (let i = 0; i < numberOfMemoryPieces.length; i++) {
     numberOfMemoryPieces[i].addEventListener('click', function(){
       
       let theEventTarget = event.target; 
@@ -133,19 +133,19 @@ if (mode >= 16 && window.innerWidth >= 1024) {
           if (prevCard === currentCard && prevCardTargetInfo != theEventTarget) {
             prevCard = ""; 
             prevCardTargetInfo = "";
-            score.push(1);
-            window.document.getElementById('score').textContent = score.length;
+            score++;
+            window.document.getElementById('score').textContent = score;
             window.document.querySelectorAll('.memoryPiece').forEach(function(onePiece){
               if (onePiece.dataset.number === theEventTarget.dataset.number) {
                 onePiece.disabled = true;
               }
             })
-            if (mode == score.length) {
+            if (mode == score) {
               window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
               clearInterval(time);
               document.querySelector('.timeDisplayFinish').textContent = seconds;
             }
-            if (score.length === 4 && mode === 20) {
+            if (score === 4 && mode === 20) {
               setInterval(function(){
                 // document.documentElement.style.setProperty('--accent-color', getRandomColor());
                 document.documentElement.style.setProperty('--bg-color', getRandomColor());
@@ -181,7 +181,7 @@ const replay = function(mode, time){
   
   myNode.classList.remove('memoryContainerShow')
   window.document.querySelector('.gameCompleteMessage').classList.remove('gameCompleteMessageShow');
-  for (var i = 0; i < document.body.getElementsByClassName('memoryPiece').length; i++) {
+  for (let i = 0; i < document.body.getElementsByClassName('memoryPiece').length; i++) {
     document.body.getElementsByClassName('memoryPiece')[i].disabled = false;
   }
   if (mode == 16) {
@@ -196,7 +196,7 @@ const replay = function(mode, time){
   }, 2500)
 }
 
-for (var i = 0; i < window.document.querySelectorAll('.buttons').length-1; i++) {
+for (let i = 0; i < window.document.querySelectorAll('.buttons').length-1; i++) {
   window.document.getElementsByClassName('buttons')[i].addEventListener('click', function(){ 
     mode = event.target.dataset.mode;
     play(mode);
