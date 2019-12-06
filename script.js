@@ -5,7 +5,7 @@ let insaneInterval;
 let animationInterval;
 const myNode = window.document.getElementsByClassName("memoryContainer")[0];
 
-if (window.innerWidth <= 425) {
+if (window.innerWidth <= 1024) {
   animationBackground = 255;
 }
 
@@ -191,7 +191,7 @@ if (mode >= 16 && window.innerWidth >= 1024) {
             
           }else if (prevCard !== currentCard) {
             setTimeout(function(){ 
-              duration = 2;
+              duration = 4;
               // theEventTarget.removeAttribute("style")
               // prevCardTargetInfo.removeAttribute("style")
               theEventTarget.classList.remove('memoryPieceText');

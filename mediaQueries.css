@@ -10,7 +10,7 @@
   }
 }
 
-@media (max-width:526px) {
+@media (max-width:468px) {
   
   .clickCounter {
     font-size: 10px;
@@ -57,9 +57,17 @@
     display: none;
   }
   
+  .titleAfterStart {
+    font-size: 40px;
+  }
 }
 
 @media (max-width:320px){
+  
+  .titleAfterStart {
+    font-size: 40px;
+  }
+  
   .menu {
     font-size: 40px;
   }
