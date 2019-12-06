@@ -2,7 +2,12 @@
 let mode;
 let time; 
 let insaneInterval;
+let animationInterval;
 const myNode = window.document.getElementsByClassName("memoryContainer")[0];
+
+if (window.innerWidth <= 425) {
+  animationBackground = 255;
+}
 
 // Shuffles the full array
 const shuffle = function(array) {
@@ -121,6 +126,9 @@ if (mode >= 16 && window.innerWidth >= 1024) {
     }
   
   },10*1000);
+  animationInterval = setInterval(function(){
+    animationColor = getRandomColor();
+  },1000);
 }
  
   console.log(numberOfMemoryPieces);
@@ -151,6 +159,7 @@ if (mode >= 16 && window.innerWidth >= 1024) {
             prevCard = ""; 
             prevCardTargetInfo = "";
             score++;
+            duration = 4;
             window.document.getElementById('score').textContent = score;
             window.document.querySelectorAll('.memoryPiece').forEach(function(onePiece){
               if (onePiece.dataset.number === theEventTarget.dataset.number) {
@@ -175,11 +184,14 @@ if (mode >= 16 && window.innerWidth >= 1024) {
               }
               if (mode == 20) {
                 clearInterval(insaneInterval);
+                clearInterval(animationInterval);
+                
               }
             }
             
           }else if (prevCard !== currentCard) {
             setTimeout(function(){ 
+              duration = 2;
               // theEventTarget.removeAttribute("style")
               // prevCardTargetInfo.removeAttribute("style")
               theEventTarget.classList.remove('memoryPieceText');
@@ -239,6 +251,14 @@ const menu = function(){
   window.document.getElementsByClassName('buttons')['mainMenu'].style.display = 'none';
   window.document.getElementsByClassName('buttons')['restart'].disabled = 'true';
   window.document.querySelector('.title').textContent = 'Loading...';
+  if (mode == 20) {
+    clearInterval(insaneInterval);
+    clearInterval(animationInterval);
+    
+  }
+  if (window.document.querySelector('.gameCompleteMessage').classList.contains('gameCompleteMessageShow') === true) {
+    window.document.querySelector('.gameCompleteMessage').classList.remove('gameCompleteMessageShow');
+  }
 }
 
 for (let i = 0; i < window.document.querySelectorAll('.buttons').length-2; i++) {

@@ -51,11 +51,7 @@
   .memoryContainerShow {
     width: 80vw;
     padding: 2.5vw 2.5vw;
-  }
-  
-  .gameCompleteMessageShow {
-    transform: translateY(-400%);
-  }
+  } 
   
   [name~='startInsane'] {
     display: none;
