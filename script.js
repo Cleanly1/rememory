@@ -244,7 +244,12 @@ const menu = function(){
     for (let i = 0; i < window.document.getElementsByClassName('buttons').length-2; i++) {
       window.document.getElementsByClassName('buttons')[i].style.display = 'inherit';
     }
-    
+    if (window.innerWidth <= 1024) {
+      window.document.getElementsByClassName('buttons')['startInsane'].style.display = 'none';
+    }
+    if (window.innerWidth <= 320) {
+      window.document.getElementsByClassName('buttons')['startHard'].style.display = 'none';
+    }
     window.document.querySelector('.menu').classList.remove('menuAfterStart');
     window.document.querySelector('.title').textContent = 'Rememory';
   },3000)

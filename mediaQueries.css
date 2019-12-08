@@ -33,6 +33,7 @@
   
   .menuAfterStart {
     justify-content: center;
+    flex-flow: row nowrap;
     margin-bottom: 10px;
     font-size: 24px;
     width: auto;
@@ -65,11 +66,19 @@
 @media (max-width:320px){
   
   .titleAfterStart {
-    font-size: 40px;
+    font-size: 28px;
   }
   
   .menu {
-    font-size: 40px;
+    font-size: 32px;
+  }
+  
+  .menuAfterStart {
+    justify-content: center;
+    flex-flow: row nowrap;
+    margin-bottom: 10px;
+    font-size: 24px;
+    width: auto;
   }
   
   .memoryContainerShow {
