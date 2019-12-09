@@ -12,3 +12,7 @@ or
 ## Testers 
 - [Viktor Sjöblom](https://github.com/ViktorSjoblom)
 - [Daniel Thorsen](https://github.com/DanThor)
+
+
+## License
+This repository uses the MIT License
