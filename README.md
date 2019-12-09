@@ -11,4 +11,4 @@ or
 
 ## Testers 
 - [Viktor Sjöblom](https://github.com/ViktorSjoblom)
--
+- [Daniel Thorsen](https://github.com/DanThor)
