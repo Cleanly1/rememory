@@ -5,7 +5,7 @@ let insaneInterval;
 let animationInterval;
 let colorShiftInterval;
 const startButtons = window.document.getElementsByClassName('buttons');
-const memoryContainer = window.document.getElementsByClassName('memoryContainer')[0];
+const memoryContainer = window.document.querySelector('.memoryContainer');
 
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
   animationBackground = 0;
@@ -106,11 +106,11 @@ const play = function(mode){
     btns.innerHTML = memoryPiece.number;
     btns.setAttribute('class', 'memoryPiece'); 
     btns.setAttribute('data-number', memoryPiece.number);
-    document.body.getElementsByClassName('memoryContainer')[0].appendChild(btns);
+    document.body.querySelector('.memoryContainer').appendChild(btns);
   })
   
 if (mode >= 16 && window.innerWidth >= 1024) {
-  window.document.getElementsByClassName('memoryContainer')[0].classList.add('mode16');
+  window.document.querySelector('.memoryContainer').classList.add('mode16');
     for (let i = 0; i < elementMemoryPieces.length; i++) {
       elementMemoryPieces[i].style.margin = '0 1%';
     }
@@ -179,11 +179,13 @@ if (mode >= 16 && window.innerWidth >= 1024) {
               window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
               document.querySelector('.clicksDisplayFinish').textContent = clicks;
               clearInterval(time);
+              
               if (minutes === 0) {
                 document.querySelector('.timeDisplayFinish').textContent = seconds;
               }else {
                 document.querySelector('.timeDisplayFinish').textContent = `${minutes} m ${seconds}`;
               }
+              
               if (mode == 20) {
                 clearInterval(insaneInterval);
                 clearInterval(animationInterval);
@@ -242,6 +244,7 @@ const menu = function(){
   removeMemoryPieces();
   window.document.querySelector('.clickCounter').classList.remove('clickCounterShow');
   window.document.querySelector('.title').classList.remove('titleAfterStart');
+  window.document.getElementById('score').textContent = '0';
   setTimeout(function(){
     for (let i = 0; i < window.document.getElementsByClassName('buttons').length-2; i++) {
       window.document.getElementsByClassName('buttons')[i].style.display = 'inherit';
