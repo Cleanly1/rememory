@@ -160,6 +160,10 @@ canvas {
   outline: none;
 } 
 
+.memoryPiece:hover {
+  box-shadow: 0px 0px 25px #3399ff;
+}
+
 .memoryPieceShow {
   color: var(--accent-color);
   font-size: 24px;
