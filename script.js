@@ -3,6 +3,7 @@ let mode;
 let time; 
 let insaneInterval;
 let animationInterval;
+let colorShiftInterval;
 const memoryContainer = window.document.getElementsByClassName('memoryContainer')[0];
 
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -32,8 +33,8 @@ const shuffle = function(array) {
 const getRandomInteger = function(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
-
-const makeArray = function(mode) {
+// Mode decides how many numbers the array will make
+const makeShuffledArray = function(mode) {
   let memoryPieces = []
   
   for (let i = 1; i <= mode; i++) {
@@ -63,8 +64,7 @@ const play = function(mode){
   let score = 0;
   let seconds = 0;
   let clicks = 0;
-  let minutes = 0;
-  // let index = 0;
+  let minutes = 0; 
   let theScoreCounter = window.document.getElementById('score').textContent;
   let displayTime = window.document.querySelector('.title');
   const elementMemoryPieces = window.document.getElementsByClassName('memoryPiece');
@@ -98,15 +98,12 @@ const play = function(mode){
   
   
   
-  const memoryPieces = makeArray(mode);
+  const memoryPieces = makeShuffledArray(mode);
   memoryPieces.forEach(function(memoryPiece){
-    const btns = document.createElement("button");
-    // const lis = document.createElement("li");
+    const btns = document.createElement("button"); 
     btns.innerHTML = memoryPiece.number;
     btns.setAttribute('class', 'memoryPiece'); 
     btns.setAttribute('data-number', memoryPiece.number);
-    // btns.style.order = getRndInteger(0 , (mode*2));
-    // document.body.getElementsByClassName('memoryContainer')[0].appendChild(lis);
     document.body.getElementsByClassName('memoryContainer')[0].appendChild(btns);
   })
   
@@ -168,7 +165,7 @@ if (mode >= 16 && window.innerWidth >= 1024) {
             
             if (score === 4 && mode == 20) {
             
-              const colorShiftInterval = setInterval(function(){
+              colorShiftInterval = setInterval(function(){
                 // document.documentElement.style.setProperty('--accent-color', getRandomColor());
                 document.documentElement.style.setProperty('--bg-color', getRandomColor());
               },1000)
@@ -261,6 +258,14 @@ const menu = function(){
     clearInterval(insaneInterval);
     clearInterval(animationInterval);
     clearInterval(colorShiftInterval);
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.style.setProperty('--bg-color', 'black');
+      animationBackground = 0;
+    } else {
+      document.documentElement.style.setProperty('--bg-color', 'white');
+      animationBackground = 255;
+      
+    }
   }
   if (window.document.querySelector('.gameCompleteMessage').classList.contains('gameCompleteMessageShow') === true) {
     window.document.querySelector('.gameCompleteMessage').classList.remove('gameCompleteMessageShow');
