@@ -64,8 +64,7 @@ const play = function(mode){
   let score = 0;
   let seconds = 0;
   let clicks = 0;
-  let minutes = 0; 
-  let theScoreCounter = window.document.getElementById('score').textContent;
+  let minutes = 0;
   let displayTime = window.document.querySelector('.title');
   const elementMemoryPieces = window.document.getElementsByClassName('memoryPiece');
   const startButtons = window.document.getElementsByClassName('buttons');
@@ -221,7 +220,7 @@ const removeMemoryPieces = function(){
     }
 }
 
-const replay = function(mode, time){
+const replay = function(mode){
   removeMemoryPieces();
   window.document.querySelector('.gameCompleteMessage').classList.remove('gameCompleteMessageShow');
   for (let i = 0; i < document.body.getElementsByClassName('memoryPiece').length; i++) {
@@ -255,6 +254,7 @@ const menu = function(){
   window.document.getElementsByClassName('buttons')['restart'].disabled = 'true';
   window.document.querySelector('.title').textContent = 'Loading...';
   if (mode == 20) {
+    animationColor = '#3399ff';
     clearInterval(insaneInterval);
     clearInterval(animationInterval);
     clearInterval(colorShiftInterval);
