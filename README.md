@@ -5,7 +5,7 @@ Where you have 4 modes to choose from on desktop and 2 or 3 modes on mobile base
 ## Installation
 1. Go to the [site](https://fuzzymemory.netlify.com/)
 2. Play
-or
+- or
 1. Clone this repository
 2. Open the index.html file in your browser
 
