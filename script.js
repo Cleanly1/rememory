@@ -3,10 +3,10 @@ let mode;
 let time; 
 let insaneInterval;
 let animationInterval;
-const myNode = window.document.getElementsByClassName("memoryContainer")[0];
+const memoryContainer = window.document.getElementsByClassName('memoryContainer')[0];
 
-if (window.innerWidth <= 1024) {
-  animationBackground = 255;
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  animationBackground = 0;
 }
 
 // Shuffles the full array
@@ -46,7 +46,7 @@ const makeArray = function(mode) {
   return shuffle(fullMemoryPieces);
 }
 
-// For insane mode
+// For insane mode gets a random color
 function getRandomColor() {
   let letters = '0123456789ABCDE';
   let color = '#';
@@ -107,8 +107,7 @@ const play = function(mode){
     btns.setAttribute('data-number', memoryPiece.number);
     // btns.style.order = getRndInteger(0 , (mode*2));
     // document.body.getElementsByClassName('memoryContainer')[0].appendChild(lis);
-    document.body.getElementsByClassName('memoryContainer')[0].appendChild(btns); 
-    // index++;
+    document.body.getElementsByClassName('memoryContainer')[0].appendChild(btns);
   })
   
 if (mode >= 16 && window.innerWidth >= 1024) {
@@ -131,20 +130,20 @@ if (mode >= 16 && window.innerWidth >= 1024) {
   },1000);
 }
  
-  console.log(numberOfMemoryPieces);
+ // Where all the magic happens:
   for (let i = 0; i < numberOfMemoryPieces.length; i++) {
     numberOfMemoryPieces[i].addEventListener('click', function(){
       
       let theEventTarget = event.target; 
        
-      if (theEventTarget.classList[1] !== 'memoryPieceText') {
+      if (theEventTarget.classList[1] !== 'memoryPieceShow') {
       
         document.querySelector('.clicks').textContent = ++clicks;
       }
       
       if (theEventTarget.className === 'memoryPiece') {
         
-        theEventTarget.classList.add('memoryPieceText');
+        theEventTarget.classList.add('memoryPieceShow');
         
       }
       
@@ -167,15 +166,19 @@ if (mode >= 16 && window.innerWidth >= 1024) {
               }
             })
             
-            if (score >= 4 && mode == 20) {
-              setInterval(function(){
+            if (score === 4 && mode == 20) {
+            
+              const colorShiftInterval = setInterval(function(){
                 // document.documentElement.style.setProperty('--accent-color', getRandomColor());
                 document.documentElement.style.setProperty('--bg-color', getRandomColor());
-              },400)
+              },1000)
+              
+            
             
             }
             if (mode == score) {
               window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
+              document.querySelector('.clicksDisplayFinish').textContent = clicks;
               clearInterval(time);
               if (minutes === 0) {
                 document.querySelector('.timeDisplayFinish').textContent = seconds;
@@ -191,11 +194,9 @@ if (mode >= 16 && window.innerWidth >= 1024) {
             
           }else if (prevCard !== currentCard) {
             setTimeout(function(){ 
-              duration = 4;
-              // theEventTarget.removeAttribute("style")
-              // prevCardTargetInfo.removeAttribute("style")
-              theEventTarget.classList.remove('memoryPieceText');
-              prevCardTargetInfo.classList.remove('memoryPieceText');
+              duration = 4; 
+              theEventTarget.classList.remove('memoryPieceShow');
+              prevCardTargetInfo.classList.remove('memoryPieceShow');
               prevCardTargetInfo = "";
               prevCard = "";
             }, 500)
@@ -210,15 +211,15 @@ if (mode >= 16 && window.innerWidth >= 1024) {
 const removeMemoryPieces = function(){
   clearInterval(time);
   
-  while (myNode.firstChild) {
-    myNode.removeChild(myNode.firstChild);
+  while (memoryContainer.firstChild) {
+    memoryContainer.removeChild(memoryContainer.firstChild);
   }
   
-  myNode.classList.remove('memoryContainerShow')
+  memoryContainer.classList.remove('memoryContainerShow')
   
   if (mode >= 16) {
     
-    myNode.classList.remove('mode16');
+    memoryContainer.classList.remove('mode16');
     
     }
 }
@@ -259,7 +260,7 @@ const menu = function(){
   if (mode == 20) {
     clearInterval(insaneInterval);
     clearInterval(animationInterval);
-    
+    clearInterval(colorShiftInterval);
   }
   if (window.document.querySelector('.gameCompleteMessage').classList.contains('gameCompleteMessageShow') === true) {
     window.document.querySelector('.gameCompleteMessage').classList.remove('gameCompleteMessageShow');

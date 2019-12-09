@@ -4,7 +4,7 @@ let duration = 5;
 
 let animationColor = '#3399ff';
 
-let animationBackground = 0;
+let animationBackground = 255;
 // Create a new canvas to the browser size
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -39,7 +39,7 @@ function draw(){
   const start = [ width/2, height/7 ];
   
   // An "end" position as XY coordinate
-  const end = [  width/2, height/1.15];
+  const end = [ width/2, height/1.15];
   
   // Get a value that goes from -1..1 based on playhead
   // We use 2PI to create a seamless loop
