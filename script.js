@@ -4,6 +4,7 @@ let time;
 let insaneInterval;
 let animationInterval;
 let colorShiftInterval;
+const startButtons = window.document.getElementsByClassName('buttons');
 const memoryContainer = window.document.getElementsByClassName('memoryContainer')[0];
 
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -67,7 +68,7 @@ const play = function(mode){
   let minutes = 0;
   let displayTime = window.document.querySelector('.title');
   const elementMemoryPieces = window.document.getElementsByClassName('memoryPiece');
-  const startButtons = window.document.getElementsByClassName('buttons');
+  // startButtons = window.document.getElementsByClassName('buttons');
   window.document.querySelector('.clicks').textContent = clicks;
   window.document.getElementById('maxScore').textContent = mode;
   window.document.getElementsByClassName('displayScore')[0].style.display = 'initial';
@@ -75,6 +76,8 @@ const play = function(mode){
   window.document.querySelector('.clickCounter').classList.add('clickCounterShow');
   window.document.querySelector('.menu').classList.add('menuAfterStart');
   startButtons['mainMenu'].style.display = 'inherit';
+  startButtons['mainMenu'].disabled = false;
+  startButtons['restart'].disabled = false;
   displayTime.classList.add('titleAfterStart');
   time = setInterval(function(){
     if (seconds < 59) {
@@ -221,6 +224,8 @@ const removeMemoryPieces = function(){
 }
 
 const replay = function(mode){
+  startButtons['mainMenu'].disabled = 'true';
+  startButtons['restart'].disabled = 'true';
   removeMemoryPieces();
   window.document.querySelector('.gameCompleteMessage').classList.remove('gameCompleteMessageShow');
   for (let i = 0; i < document.body.getElementsByClassName('memoryPiece').length; i++) {
