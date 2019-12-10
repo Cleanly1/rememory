@@ -61,7 +61,7 @@ function draw(){
   const minDim = min(width/2, height);
   
   // Size is a fraction of the screen
-  const size = minDim * 0.5;
+  // const size = minDim * 0.5;
   
 
   // Get an animated value from 0..1

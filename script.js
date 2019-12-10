@@ -1,4 +1,5 @@
 // Declaring of varibales for global use
+'use strict';
 let mode;
 let time; 
 let insaneInterval;
@@ -14,20 +15,20 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
 // Shuffles the full array
 const shuffle = function(array) {
   let currentIndex = array.length, temporaryValue, randomIndex;
-
+  
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
-
+    
     // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-
+    
     // And swap it with the current element.
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-
+  
   return array;
 }
 // random function for insane mode
@@ -42,9 +43,9 @@ const makeShuffledArray = function(mode) {
     memoryPieces.push({number: i, })
   }
   
-  original = memoryPieces; 
-  duplicate = original.slice();
-  fullMemoryPieces = original.concat(duplicate); 
+  const original = memoryPieces; 
+  const duplicate = original.slice();
+  const fullMemoryPieces = original.concat(duplicate); 
   return shuffle(fullMemoryPieces);
 }
 
@@ -68,7 +69,7 @@ const play = function(mode){
   let minutes = 0;
   let displayTime = window.document.querySelector('.title');
   const elementMemoryPieces = window.document.getElementsByClassName('memoryPiece');
-  // startButtons = window.document.getElementsByClassName('buttons');
+  
   window.document.querySelector('.clicks').textContent = clicks;
   window.document.getElementById('maxScore').textContent = mode;
   window.document.getElementsByClassName('displayScore')[0].style.display = 'initial';
@@ -109,34 +110,34 @@ const play = function(mode){
     document.body.querySelector('.memoryContainer').appendChild(btns);
   })
   
-if (mode >= 16 && window.innerWidth >= 1024) {
-  window.document.querySelector('.memoryContainer').classList.add('mode16');
+  if (mode >= 16 && window.innerWidth >= 1024) {
+    window.document.querySelector('.memoryContainer').classList.add('mode16');
     for (let i = 0; i < elementMemoryPieces.length; i++) {
       elementMemoryPieces[i].style.margin = '0 1%';
     }
-}
+  }
   const numberOfMemoryPieces = window.document.querySelectorAll('.memoryPiece');
   // for insane mode
   if (mode == 20) {
-  insaneInterval = setInterval(function(){
-    for (let i = 0; i < elementMemoryPieces.length; i++) {
-      elementMemoryPieces[i].style.order = getRandomInteger(0 , (mode*2));
-    }
+    insaneInterval = setInterval(function(){
+      for (let i = 0; i < elementMemoryPieces.length; i++) {
+        elementMemoryPieces[i].style.order = getRandomInteger(0 , (mode*2));
+      }
+      
+    },10*1000);
+    animationInterval = setInterval(function(){
+      animationColor = getRandomColor();
+    },1000);
+  }
   
-  },10*1000);
-  animationInterval = setInterval(function(){
-    animationColor = getRandomColor();
-  },1000);
-}
- 
- // Where all the magic happens:
+  // Where all the magic happens:
   for (let i = 0; i < numberOfMemoryPieces.length; i++) {
     numberOfMemoryPieces[i].addEventListener('click', function(){
       
       let theEventTarget = event.target; 
-       
-      if (theEventTarget.classList[1] !== 'memoryPieceShow') {
       
+      if (theEventTarget.classList[1] !== 'memoryPieceShow') {
+        
         document.querySelector('.clicks').textContent = ++clicks;
       }
       
@@ -153,57 +154,57 @@ if (mode >= 16 && window.innerWidth >= 1024) {
         prevCard = currentCard;
       }else if (prevCard !== "") {
         
-          if (prevCard === currentCard && prevCardTargetInfo != theEventTarget) {
-            prevCard = ""; 
-            prevCardTargetInfo = "";
-            score++;
-            duration = 4;
-            window.document.getElementById('score').textContent = score;
-            window.document.querySelectorAll('.memoryPiece').forEach(function(onePiece){
-              if (onePiece.dataset.number === theEventTarget.dataset.number) {
-                onePiece.disabled = true;
-              }
-            })
-            
-            if (score === 4 && mode == 20) {
-            
-              colorShiftInterval = setInterval(function(){
-                // document.documentElement.style.setProperty('--accent-color', getRandomColor());
-                document.documentElement.style.setProperty('--bg-color', getRandomColor());
-              },1000)
-              
-            
-            
+        if (prevCard === currentCard && prevCardTargetInfo != theEventTarget) {
+          prevCard = ""; 
+          prevCardTargetInfo = "";
+          score++;
+          duration = 4;
+          window.document.getElementById('score').textContent = score;
+          window.document.querySelectorAll('.memoryPiece').forEach(function(onePiece){
+            if (onePiece.dataset.number === theEventTarget.dataset.number) {
+              onePiece.disabled = true;
             }
-            if (mode == score) {
-              window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
-              document.querySelector('.clicksDisplayFinish').textContent = clicks;
-              clearInterval(time);
-              
-              if (minutes === 0) {
-                document.querySelector('.timeDisplayFinish').textContent = seconds;
-              }else {
-                document.querySelector('.timeDisplayFinish').textContent = `${minutes} m ${seconds}`;
-              }
-              
-              if (mode == 20) {
-                clearInterval(insaneInterval);
-                clearInterval(animationInterval);
-                
-              }
-            }
+          })
+          
+          if (score === 4 && mode == 20) {
             
-          }else if (prevCard !== currentCard) {
-            setTimeout(function(){ 
-              duration = 4; 
-              theEventTarget.classList.remove('memoryPieceShow');
-              prevCardTargetInfo.classList.remove('memoryPieceShow');
-              prevCardTargetInfo = "";
-              prevCard = "";
-            }, 500)
+            colorShiftInterval = setInterval(function(){
+              // document.documentElement.style.setProperty('--accent-color', getRandomColor());
+              document.documentElement.style.setProperty('--bg-color', getRandomColor());
+            },1000)
+          
+          
+            
           }
+          if (mode == score) {
+            window.document.querySelector('.gameCompleteMessage').classList.add('gameCompleteMessageShow');
+            document.querySelector('.clicksDisplayFinish').textContent = clicks;
+            clearInterval(time);
+            
+            if (minutes === 0) {
+              document.querySelector('.timeDisplayFinish').textContent = seconds;
+            }else {
+              document.querySelector('.timeDisplayFinish').textContent = `${minutes} m ${seconds}`;
+            }
+            
+            if (mode == 20) {
+              clearInterval(insaneInterval);
+              clearInterval(animationInterval);
+              
+            } 
+          } 
+          
+        }else if (prevCard !== currentCard) {
+          setTimeout(function(){ 
+            duration = 4; 
+            theEventTarget.classList.remove('memoryPieceShow');
+            prevCardTargetInfo.classList.remove('memoryPieceShow');
+            prevCardTargetInfo = "";
+            prevCard = "";
+          }, 500)
+        }
       } 
-        
+      
     })
   }
   
@@ -222,7 +223,7 @@ const removeMemoryPieces = function(){
     
     memoryContainer.classList.remove('mode16');
     
-    }
+  }
 }
 
 const replay = function(mode){
@@ -233,7 +234,7 @@ const replay = function(mode){
   for (let i = 0; i < document.body.getElementsByClassName('memoryPiece').length; i++) {
     document.body.getElementsByClassName('memoryPiece')[i].disabled = false;
   }
-
+  
   setTimeout(function(){
     play(mode);
     window.document.getElementById('score').textContent = '0';
