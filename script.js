@@ -1,5 +1,5 @@
-// Declaring of varibales for global use
-'use strict';
+'use strict'; 
+// Declaring of varibales for global use 
 let mode;
 let time; 
 let insaneInterval;
