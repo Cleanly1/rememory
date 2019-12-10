@@ -117,7 +117,7 @@ const play = function(mode){
     }
   }
   const numberOfMemoryPieces = window.document.querySelectorAll('.memoryPiece');
-  // for insane mode
+  // For insane mode
   if (mode == 20) {
     insaneInterval = setInterval(function(){
       for (let i = 0; i < elementMemoryPieces.length; i++) {
@@ -296,6 +296,6 @@ window.document.getElementsByClassName('buttons')['restart'].addEventListener('c
   replay(mode, time);
 });
 
-window.document.getElementsByClassName('yesButton')[0].addEventListener('click', function(){
+window.document.querySelector('.yesButton').addEventListener('click', function(){
   replay(mode, time);
 });
